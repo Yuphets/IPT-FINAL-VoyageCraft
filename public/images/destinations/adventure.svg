@@ -1,0 +1,20 @@
+<svg width="1600" height="900" viewBox="0 0 1600 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1600" height="900" fill="#1F2937"/>
+  <rect width="1600" height="560" fill="url(#sunset)"/>
+  <circle cx="1240" cy="176" r="120" fill="#FDE68A"/>
+  <path d="M0 550C139 488 247 461 364 475C481 489 607 544 741 566C875 588 1001 577 1114 550C1227 523 1337 480 1600 474V900H0V550Z" fill="#7C2D12"/>
+  <path d="M0 628C151 650 294 708 432 733C570 758 698 750 826 713C954 676 1074 611 1204 603C1334 595 1453 644 1600 714V900H0V628Z" fill="#92400E"/>
+  <path d="M198 628L407 436L598 628H198Z" fill="#1F2937"/>
+  <path d="M568 628L780 346L1016 628H568Z" fill="#111827"/>
+  <path d="M907 628L1130 420L1368 628H907Z" fill="#1F2937"/>
+  <circle cx="1102" cy="523" r="28" fill="#FDE68A"/>
+  <path d="M1098 551L1064 618H1118L1098 551Z" fill="#78350F"/>
+  <path d="M317 690C425 634 542 619 651 638C760 657 861 711 981 707C1101 703 1208 642 1312 631C1416 620 1517 649 1600 692" stroke="#F8FAFC" stroke-opacity="0.7" stroke-width="14" stroke-linecap="round" stroke-dasharray="3 24"/>
+  <path d="M1584 684L1600 692L1585 708L1584 684Z" fill="#F8FAFC"/>
+  <defs>
+    <linearGradient id="sunset" x1="800" y1="0" x2="800" y2="560" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FB7185"/>
+      <stop offset="1" stop-color="#FDBA74"/>
+    </linearGradient>
+  </defs>
+</svg>

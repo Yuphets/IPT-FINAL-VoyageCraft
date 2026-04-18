@@ -1,0 +1,90 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    :root {
+        --brand-ink: 15 23 42;
+        --brand-surface: 248 250 252;
+        --brand-mist: 226 232 240;
+        --brand-teal: 13 148 136;
+        --brand-cyan: 8 145 178;
+        --brand-amber: 217 119 6;
+        --brand-navy: 15 23 42;
+    }
+
+    html {
+        scroll-behavior: smooth;
+    }
+
+    body {
+        font-family: 'Manrope', sans-serif;
+        background:
+            radial-gradient(circle at top left, rgba(56, 189, 248, 0.12), transparent 30%),
+            radial-gradient(circle at top right, rgba(245, 158, 11, 0.14), transparent 24%),
+            linear-gradient(180deg, #020617 0%, #0f172a 18%, #e2e8f0 18%, #f8fafc 100%);
+        color: rgb(var(--brand-ink));
+        min-height: 100vh;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4 {
+        font-family: 'Cormorant Garamond', serif;
+        letter-spacing: -0.02em;
+    }
+
+    ::selection {
+        background: rgba(20, 184, 166, 0.22);
+    }
+
+    [x-cloak] {
+        display: none !important;
+    }
+}
+
+@layer components {
+    .page-wrap {
+        @apply mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8;
+    }
+
+    .surface-panel {
+        @apply rounded-[28px] border border-slate-200/80 bg-white/90 shadow-[0_24px_80px_-36px_rgba(15,23,42,0.45)] backdrop-blur;
+    }
+
+    .surface-panel-dark {
+        @apply rounded-[28px] border border-white/10 bg-slate-950/75 text-slate-100 shadow-[0_30px_90px_-40px_rgba(8,145,178,0.55)] backdrop-blur;
+    }
+
+    .soft-badge {
+        @apply inline-flex items-center rounded-full border border-teal-500/20 bg-teal-500/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.24em] text-teal-700;
+    }
+
+    .hero-kicker {
+        @apply text-sm font-semibold uppercase tracking-[0.3em] text-cyan-200/90;
+    }
+
+    .section-title {
+        @apply text-3xl font-semibold leading-tight text-slate-950 sm:text-4xl;
+    }
+
+    .muted-copy {
+        @apply text-sm leading-6 text-slate-600 sm:text-base;
+    }
+
+    .metric-card {
+        @apply rounded-[28px] border border-slate-200/80 bg-white/90 p-5 shadow-[0_24px_80px_-36px_rgba(15,23,42,0.45)] backdrop-blur;
+    }
+
+    .button-ghost {
+        @apply inline-flex items-center justify-center rounded-full border border-slate-300 bg-white px-4 py-2 text-sm font-semibold text-slate-700 transition hover:border-slate-400 hover:bg-slate-50;
+    }
+
+    .travel-grid {
+        background-image:
+            linear-gradient(rgba(148, 163, 184, 0.08) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(148, 163, 184, 0.08) 1px, transparent 1px);
+        background-size: 36px 36px;
+    }
+}
