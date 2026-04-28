@@ -3,7 +3,23 @@
 use Illuminate\Support\Str;
 use Pdo\Mysql;
 
-$databaseUrl = env('DB_URL', env('DATABASE_URL', env('POSTGRES_URL')));
+$databaseUrl = env('DATABASE_URL', env('POSTGRES_URL', env('DB_URL')));
+$usesNeon = is_string($databaseUrl) && str_contains($databaseUrl, '.neon.tech');
+$sslMode = env('DB_SSLMODE', $usesNeon ? 'require' : 'prefer');
+$channelBinding = env('DB_CHANNEL_BINDING', $usesNeon ? 'require' : null);
+
+if ($usesNeon) {
+    $querySeparator = str_contains($databaseUrl, '?') ? '&' : '?';
+
+    if (!preg_match('/(?:\?|&)sslmode=/i', $databaseUrl)) {
+        $databaseUrl .= $querySeparator . 'sslmode=' . $sslMode;
+        $querySeparator = '&';
+    }
+
+    if ($channelBinding && !preg_match('/(?:\?|&)channel_binding=/i', $databaseUrl)) {
+        $databaseUrl .= $querySeparator . 'channel_binding=' . $channelBinding;
+    }
+}
 
 return [
 
@@ -98,7 +114,7 @@ return [
             'prefix' => '',
             'prefix_indexes' => true,
             'search_path' => 'public',
-            'sslmode' => env('DB_SSLMODE', 'prefer'),
+            'sslmode' => $sslMode,
         ],
 
         'sqlsrv' => [
