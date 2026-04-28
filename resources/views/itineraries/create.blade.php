@@ -115,7 +115,7 @@
 
         <aside class="space-y-6">
             <section class="surface-panel overflow-hidden">
-                <img src="{{ $sidebarCover?->cover_image_url ?? asset('images/destinations/heritage.svg') }}" alt="Trip inspiration visual" class="h-52 w-full object-cover" />
+                <img src="{{ $sidebarCover?->cover_image_url ?? \App\Models\Itinerary::themeImageUrl('heritage') }}" alt="Trip inspiration visual" class="h-52 w-full object-cover" />
                 <div class="p-6">
                     <p class="soft-badge">Planning tip</p>
                     <h2 class="mt-4 text-3xl font-semibold text-slate-950">A strong itinerary starts with a clear trip story.</h2>

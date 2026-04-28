@@ -92,7 +92,7 @@
 
                 <div class="grid gap-5 sm:grid-cols-2">
                     <article class="surface-panel overflow-hidden sm:col-span-2">
-                        <img src="{{ $featuredCovers->first()?->cover_image_url ?? asset('images/destinations/voyage.svg') }}" alt="Travel planning visual" class="h-72 w-full object-cover sm:h-80" />
+                        <img src="{{ $featuredCovers->first()?->cover_image_url ?? \App\Models\Itinerary::themeImageUrl('voyage') }}" alt="Travel planning visual" class="h-72 w-full object-cover sm:h-80" />
                         <div class="grid gap-4 p-6 sm:grid-cols-[1.2fr_0.8fr] sm:items-center">
                             <div>
                                 <p class="text-sm font-semibold uppercase tracking-[0.24em] text-teal-700">Trip preview</p>
@@ -148,12 +148,12 @@
                     @forelse($featuredCovers as $cover)
                         <img src="{{ $cover->cover_image_url }}" alt="{{ $cover->title }}" class="h-60 w-full rounded-[24px] object-cover" />
                     @empty
-                        <img src="{{ asset('images/destinations/city.svg') }}" alt="City trip illustration" class="h-60 w-full rounded-[24px] object-cover" />
-                        <img src="{{ asset('images/destinations/coast.svg') }}" alt="Coastal trip illustration" class="h-60 w-full rounded-[24px] object-cover" />
-                        <img src="{{ asset('images/destinations/mountain.svg') }}" alt="Mountain trip illustration" class="h-60 w-full rounded-[24px] object-cover" />
-                        <img src="{{ asset('images/destinations/heritage.svg') }}" alt="Cultural trip illustration" class="h-60 w-full rounded-[24px] object-cover" />
-                        <img src="{{ asset('images/destinations/adventure.svg') }}" alt="Adventure trip illustration" class="h-60 w-full rounded-[24px] object-cover" />
-                        <img src="{{ asset('images/destinations/culinary.svg') }}" alt="Food trip illustration" class="h-60 w-full rounded-[24px] object-cover" />
+                        <img src="{{ \App\Models\Itinerary::themeImageUrl('city') }}" alt="City trip illustration" class="h-60 w-full rounded-[24px] object-cover" />
+                        <img src="{{ \App\Models\Itinerary::themeImageUrl('coast') }}" alt="Coastal trip illustration" class="h-60 w-full rounded-[24px] object-cover" />
+                        <img src="{{ \App\Models\Itinerary::themeImageUrl('mountain') }}" alt="Mountain trip illustration" class="h-60 w-full rounded-[24px] object-cover" />
+                        <img src="{{ \App\Models\Itinerary::themeImageUrl('heritage') }}" alt="Cultural trip illustration" class="h-60 w-full rounded-[24px] object-cover" />
+                        <img src="{{ \App\Models\Itinerary::themeImageUrl('adventure') }}" alt="Adventure trip illustration" class="h-60 w-full rounded-[24px] object-cover" />
+                        <img src="{{ \App\Models\Itinerary::themeImageUrl('culinary') }}" alt="Food trip illustration" class="h-60 w-full rounded-[24px] object-cover" />
                     @endforelse
                 </div>
             </section>

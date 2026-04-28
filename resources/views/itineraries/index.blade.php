@@ -97,7 +97,7 @@
         @else
             <section class="surface-panel overflow-hidden">
                 <div class="grid gap-0 lg:grid-cols-[0.9fr_1.1fr]">
-                    <img src="{{ $emptyStateCover?->cover_image_url ?? asset('images/destinations/voyage.svg') }}" alt="Travel planning visual" class="h-full min-h-[280px] w-full object-cover" />
+                    <img src="{{ $emptyStateCover?->cover_image_url ?? \App\Models\Itinerary::themeImageUrl('voyage') }}" alt="Travel planning visual" class="h-full min-h-[280px] w-full object-cover" />
                     <div class="p-8 sm:p-10">
                         <p class="soft-badge">No itineraries yet</p>
                         <h2 class="mt-4 text-4xl font-semibold text-slate-950">Start with a trip worth presenting beautifully.</h2>

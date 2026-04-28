@@ -96,7 +96,7 @@
             </section>
 
             <section class="surface-panel overflow-hidden">
-                <img src="{{ $adminCover?->cover_image_url ?? asset('images/destinations/city.svg') }}" alt="Admin dashboard visual" class="h-48 w-full object-cover" />
+                <img src="{{ $adminCover?->cover_image_url ?? \App\Models\Itinerary::themeImageUrl('city') }}" alt="Admin dashboard visual" class="h-48 w-full object-cover" />
                 <div class="p-6">
                     <h3 class="text-3xl font-semibold text-slate-950">Clean oversight</h3>
                     <p class="mt-3 text-sm leading-7 text-slate-600">

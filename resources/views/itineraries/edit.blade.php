@@ -135,7 +135,7 @@
 
         <aside class="space-y-6">
             <section class="surface-panel overflow-hidden">
-                <img src="{{ $fallbackCover?->cover_image_url ?? asset('images/destinations/' . $itinerary->coverTheme() . '.svg') }}" alt="Destination theme" class="h-52 w-full object-cover" />
+                <img src="{{ $fallbackCover?->cover_image_url ?? \App\Models\Itinerary::themeImageUrl($itinerary->coverTheme()) }}" alt="Destination theme" class="h-52 w-full object-cover" />
                 <div class="p-6">
                     <p class="soft-badge">Theme preview</p>
                     <h2 class="mt-4 text-3xl font-semibold text-slate-950">Your fallback artwork still matches the trip type.</h2>

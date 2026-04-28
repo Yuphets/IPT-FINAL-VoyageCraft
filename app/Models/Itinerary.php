@@ -10,6 +10,16 @@ class Itinerary extends Model
 {
     use HasFactory;
 
+    protected const THEME_IMAGE_URLS = [
+        'voyage' => 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1600&q=80',
+        'coast' => 'https://images.unsplash.com/photo-1500375592092-40eb2168fd21?auto=format&fit=crop&w=1600&q=80',
+        'city' => 'https://images.unsplash.com/photo-1514565131-fce0801e5785?auto=format&fit=crop&w=1600&q=80',
+        'mountain' => 'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1600&q=80',
+        'heritage' => 'https://images.unsplash.com/photo-1524492412937-b28074a5d7da?auto=format&fit=crop&w=1600&q=80',
+        'adventure' => 'https://images.unsplash.com/photo-1527631746610-bca00a040d60?auto=format&fit=crop&w=1600&q=80',
+        'culinary' => 'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=1600&q=80',
+    ];
+
     protected $fillable = [
         'user_id', 'title', 'description', 'start_date', 'end_date',
         'cover_image', 'cover_image_provider', 'cover_image_remote_url',
@@ -44,7 +54,12 @@ class Itinerary extends Model
             return asset('storage/' . $this->cover_image);
         }
 
-        return asset('images/destinations/' . $this->coverTheme() . '.svg');
+        return static::themeImageUrl($this->coverTheme());
+    }
+
+    public static function themeImageUrl(string $theme = 'voyage'): string
+    {
+        return static::THEME_IMAGE_URLS[$theme] ?? static::THEME_IMAGE_URLS['voyage'];
     }
 
     public function hasExternalCoverImage(): bool

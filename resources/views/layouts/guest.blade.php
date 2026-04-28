@@ -56,8 +56,8 @@
                         </div>
 
                         <div class="mt-10 grid gap-4 sm:grid-cols-2">
-                            <img src="{{ $guestCovers->get(0)?->cover_image_url ?? asset('images/destinations/coast.svg') }}" alt="Travel photo preview" class="h-44 w-full rounded-[26px] border border-white/10 object-cover shadow-2xl shadow-cyan-950/30" />
-                            <img src="{{ $guestCovers->get(1)?->cover_image_url ?? asset('images/destinations/city.svg') }}" alt="Travel photo preview" class="h-44 w-full rounded-[26px] border border-white/10 object-cover shadow-2xl shadow-slate-950/40" />
+                            <img src="{{ $guestCovers->get(0)?->cover_image_url ?? \App\Models\Itinerary::themeImageUrl('coast') }}" alt="Travel photo preview" class="h-44 w-full rounded-[26px] border border-white/10 object-cover shadow-2xl shadow-cyan-950/30" />
+                            <img src="{{ $guestCovers->get(1)?->cover_image_url ?? \App\Models\Itinerary::themeImageUrl('city') }}" alt="Travel photo preview" class="h-44 w-full rounded-[26px] border border-white/10 object-cover shadow-2xl shadow-slate-950/40" />
                         </div>
                     </div>
                 </section>
