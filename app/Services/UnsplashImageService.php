@@ -11,6 +11,32 @@ use RuntimeException;
 
 class UnsplashImageService
 {
+    public function inlineImageUrl(?string $imageUrl): ?string
+    {
+        if (! $imageUrl || str_starts_with($imageUrl, 'data:')) {
+            return $imageUrl;
+        }
+
+        try {
+            $response = Http::withOptions([
+                'verify' => config('services.unsplash.verify_ssl', true),
+            ])->timeout(20)->get($imageUrl);
+
+            $response->throw();
+
+            $contentType = $response->header('Content-Type') ?: 'image/jpeg';
+            $contents = $response->body();
+
+            if ($contents === '') {
+                return $imageUrl;
+            }
+
+            return 'data:' . $contentType . ';base64,' . base64_encode($contents);
+        } catch (RequestException|RuntimeException) {
+            return $imageUrl;
+        }
+    }
+
     public function syncItineraryCoverImage(Itinerary $itinerary, bool $forceRefresh = false): bool
     {
         $itinerary->loadMissing('destinations');
@@ -47,7 +73,7 @@ class UnsplashImageService
         $itinerary->forceFill([
             'cover_image' => null,
             'cover_image_provider' => 'unsplash-auto',
-            'cover_image_remote_url' => $photo['image_url'],
+            'cover_image_remote_url' => $this->inlineImageUrl($photo['image_url']),
             'cover_image_author_name' => $photo['photographer_name'],
             'cover_image_author_url' => $photo['photographer_url'],
             'cover_image_source_url' => $photo['source_url'],

@@ -199,7 +199,7 @@ class ItineraryController extends Controller
 
             $validated['cover_image'] = null;
             $validated['cover_image_provider'] = $validated['selected_cover_image_provider'];
-            $validated['cover_image_remote_url'] = $selectedImageUrl;
+            $validated['cover_image_remote_url'] = $unsplash->inlineImageUrl($selectedImageUrl);
             $validated['cover_image_author_name'] = $validated['selected_cover_image_author_name'];
             $validated['cover_image_author_url'] = $validated['selected_cover_image_author_url'];
             $validated['cover_image_source_url'] = $validated['selected_cover_image_source_url'];
