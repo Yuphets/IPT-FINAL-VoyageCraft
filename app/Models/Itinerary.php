@@ -36,12 +36,12 @@ class Itinerary extends Model
     // Accessor for full image URL
     public function getCoverImageUrlAttribute(): string
     {
-        if ($this->cover_image) {
-            return asset('storage/' . $this->cover_image);
-        }
-
         if ($this->cover_image_remote_url) {
             return $this->cover_image_remote_url;
+        }
+
+        if ($this->cover_image) {
+            return asset('storage/' . $this->cover_image);
         }
 
         return asset('images/destinations/' . $this->coverTheme() . '.svg');

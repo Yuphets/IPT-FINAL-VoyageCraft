@@ -3,7 +3,9 @@
 use Illuminate\Support\Str;
 use Pdo\Mysql;
 
-$databaseUrl = env('DATABASE_URL', env('POSTGRES_URL', env('DB_URL')));
+$webDatabaseUrl = env('DATABASE_URL', env('POSTGRES_URL', env('DB_URL')));
+$consoleDatabaseUrl = env('DATABASE_URL_UNPOOLED', env('POSTGRES_URL_NON_POOLING', $webDatabaseUrl));
+$databaseUrl = in_array(PHP_SAPI, ['cli', 'phpdbg'], true) ? $consoleDatabaseUrl : $webDatabaseUrl;
 $usesNeon = is_string($databaseUrl) && str_contains($databaseUrl, '.neon.tech');
 $sslMode = env('DB_SSLMODE', $usesNeon ? 'require' : 'prefer');
 $channelBinding = env('DB_CHANNEL_BINDING', $usesNeon ? 'require' : null);

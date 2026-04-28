@@ -8,7 +8,6 @@ use App\Services\UnsplashImageService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
-use Intervention\Image\Facades\Image;
 use Barryvdh\DomPDF\Facade\Pdf;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
@@ -178,15 +177,14 @@ class ItineraryController extends Controller
             }
 
             $image = $request->file('cover_image');
-            $filename = time() . '.' . $image->getClientOriginalExtension();
-            $path = $image->storeAs('itinerary_covers', $filename, 'public');
+            $mimeType = $image->getMimeType() ?: 'image/jpeg';
+            $contents = file_get_contents($image->getRealPath());
 
-            $img = Image::make($image->getRealPath());
-            $img->fit(800, 500)->save(storage_path('app/public/' . $path));
-
-            $validated['cover_image'] = $path;
-            $validated['cover_image_provider'] = null;
-            $validated['cover_image_remote_url'] = null;
+            $validated['cover_image'] = null;
+            $validated['cover_image_provider'] = 'upload-inline';
+            $validated['cover_image_remote_url'] = $contents
+                ? 'data:' . $mimeType . ';base64,' . base64_encode($contents)
+                : null;
             $validated['cover_image_author_name'] = null;
             $validated['cover_image_author_url'] = null;
             $validated['cover_image_source_url'] = null;
