@@ -10,13 +10,17 @@
 </head>
 <body class="antialiased">
     @php
-        $dashboardRoute = auth()->check() && auth()->user()->hasRole('admin')
-            ? route('admin.dashboard')
-            : route('dashboard');
-        $featuredCovers = \App\Models\Itinerary::whereNotNull('cover_image_remote_url')
-            ->latest()
-            ->take(6)
-            ->get();
+        $dashboardRoute = route('dashboard');
+
+        if (auth()->check()) {
+            try {
+                $dashboardRoute = auth()->user()->hasRole('admin')
+                    ? route('admin.dashboard')
+                    : route('dashboard');
+            } catch (\Throwable) {
+                $dashboardRoute = route('dashboard');
+            }
+        }
     @endphp
 
     <div class="relative min-h-screen overflow-hidden">

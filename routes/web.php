@@ -5,10 +5,26 @@ use App\Http\Controllers\ItineraryController;
 use App\Http\Controllers\DestinationController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\PlaceImageController;
+use App\Models\Itinerary;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Route;
+use Throwable;
 
 Route::get('/', function () {
-    return view('welcome');
+    $featuredCovers = collect();
+
+    try {
+        $featuredCovers = Itinerary::whereNotNull('cover_image_remote_url')
+            ->latest()
+            ->take(6)
+            ->get();
+    } catch (Throwable) {
+        $featuredCovers = new Collection();
+    }
+
+    return view('welcome', [
+        'featuredCovers' => $featuredCovers,
+    ]);
 });
 
 Route::get('/dashboard', [ItineraryController::class, 'index'])
