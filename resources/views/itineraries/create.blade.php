@@ -262,7 +262,7 @@
                     status.textContent = 'Searching real place photos...';
 
                     try {
-                        const response = await window.axios.get('{{ route('place-images.search') }}', {
+                        const response = await window.axios.get('{{ url('/place-images/search') }}', {
                             params: { query },
                         });
                         renderResults(response.data.data ?? []);
